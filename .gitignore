@@ -1,9 +1,10 @@
-/.project
 /.classpath
-/.settings
-/target
-.idea
 .DS_Store
-out
-META-INF
+.idea
 *.iml
+META-INF
+out
+/.project
+/.settings
+*.swp
+/target
