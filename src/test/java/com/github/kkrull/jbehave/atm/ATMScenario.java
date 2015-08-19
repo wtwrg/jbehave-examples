@@ -10,6 +10,7 @@ import org.jbehave.core.reporters.SilentSuccessFilter;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InstanceStepsFactory;
+import org.jbehave.core.steps.SilentStepMonitor;
 import org.junit.Test;
 
 import java.util.List;
@@ -30,10 +31,11 @@ public class ATMScenario extends JUnitStory {
         Configuration configuration = new MostUsefulConfiguration()
             .useStoryLoader(new LoadFromClasspath(this.getClass())) //TODO KDK: Find a more robust mapping of JUnitStory -> .story, or at least one that is better at identifying failures
             .useStoryReporterBuilder(storyReporter)
+            .useStepMonitor(new SilentStepMonitor())
 //            .useDefaultStoryReporter(new SilentSuccessFilter(new ConsoleOutput()))
             ;
 
-        return configuration;
+        return configuration; //TODO KDK: Try some broken stories.  Try multiple stories.  Try combining with JUnit.  Try to take over the world.  There is no try; only do.
     }
 
     @Override
