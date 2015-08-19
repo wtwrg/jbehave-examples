@@ -30,14 +30,14 @@
             </plugin>
         </plugins>
 
-        <testResources>
-            <testResource>
-                <directory>src/test/java</directory>
-                <includes>
-                    <include>**/*.story</include>
-                </includes>
-            </testResource>
-        </testResources>
+        <!--<testResources>-->
+            <!--<testResource>-->
+                <!--<directory>src/test/java</directory>-->
+                <!--<includes>-->
+                    <!--<include>**/*.story</include>-->
+                <!--</includes>-->
+            <!--</testResource>-->
+        <!--</testResources>-->
     </build>
 
     <dependencies>
