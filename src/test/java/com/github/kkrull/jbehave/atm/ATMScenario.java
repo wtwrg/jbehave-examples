@@ -23,9 +23,13 @@ public class ATMScenario extends JUnitStory {
 
     @Override
     public Configuration configuration() {
+        StoryReporterBuilder storyReporter = new StoryReporterBuilder()
+            .withDefaultFormats()
+            .withFormats(CONSOLE, HTML)
+            ;
         Configuration configuration = new MostUsefulConfiguration()
-            .useStoryLoader(new LoadFromClasspath(this.getClass()))
-            .useStoryReporterBuilder(new StoryReporterBuilder().withDefaultFormats().withFormats(CONSOLE, TXT, HTML, XML))
+            .useStoryLoader(new LoadFromClasspath(this.getClass())) //TODO KDK: Find a more robust mapping of JUnitStory -> .story, or at least one that is better at identifying failures
+            .useStoryReporterBuilder(storyReporter)
 //            .useDefaultStoryReporter(new SilentSuccessFilter(new ConsoleOutput()))
             ;
 
