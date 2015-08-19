@@ -2,18 +2,34 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.masterthought.example</groupId>
+    <groupId>com.github.kkrull</groupId>
     <artifactId>jbehave-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>jbehave</name>
-    <url>http://maven.apache.org</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jbehave</groupId>
+                <artifactId>jbehave-maven-plugin</artifactId>
+                <version>${jbehave.version}</version>
+                <executions>
+                    <execution>
+                        <id>run-stories</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <includes>
+                                <include>**/*ATMScenario.java</include>
+                            </includes>
+                            <scope>test</scope>
+                        </configuration>
+                        <goals>
+                            <goal>run-stories-as-embeddables</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
         <testResources>
             <testResource>
                 <directory>src/test/java</directory>
@@ -22,41 +38,7 @@
                 </includes>
             </testResource>
         </testResources>
-
-        <plugins>
-        <plugin>
-            <groupId>org.jbehave</groupId>
-            <artifactId>jbehave-maven-plugin</artifactId>
-            <version>3.9.5</version>
-            <executions>
-                <execution>
-                    <id>run-stories</id>
-                    <phase>integration-test</phase>
-                    <!--<configuration>-->
-                        <!--
-                        You could list all the scenarios to be run herei using mulitple <scenarioClassName/>
-                        elements, but that seems really tedious, everytime you add a new scenario you'd have
-                        to modifiy the list.  -->
-                        <!--<scenarioClassNames>-->
-                        <!--<scenarioClassName>com.mindflowsolutions.example.AScenarioscenarioClassName>-->
-                        <!--</scenarioClassNames>-->
-
-                    <configuration>
-                        <includes>
-                            <include>**/*ATMScenario.java</include>
-                        </includes>
-
-                        <scope>test</scope>
-                    </configuration>
-                    <goals>
-                        <goal>run-stories-as-embeddables</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-        </plugins>
     </build>
-
 
     <dependencies>
         <dependency>
@@ -68,10 +50,14 @@
         <dependency>
             <groupId>org.jbehave</groupId>
             <artifactId>jbehave-core</artifactId>
-            <version>3.9.5</version>
+            <version>${jbehave.version}</version>
         </dependency>
     </dependencies>
+
+    <name>JBehave examples</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jbehave.version>3.9.5</jbehave.version>
+    </properties>
 </project>
-
-
-
