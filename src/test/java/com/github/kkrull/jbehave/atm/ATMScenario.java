@@ -5,12 +5,16 @@ import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.junit.JUnitStory;
 import org.jbehave.core.reporters.ConsoleOutput;
+import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.SilentSuccessFilter;
+import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.junit.Test;
 
 import java.util.List;
+
+import static org.jbehave.core.reporters.Format.*;
 
 public class ATMScenario extends JUnitStory {
 
@@ -21,7 +25,9 @@ public class ATMScenario extends JUnitStory {
     public Configuration configuration() {
         Configuration configuration = new MostUsefulConfiguration()
             .useStoryLoader(new LoadFromClasspath(this.getClass()))
-            .useDefaultStoryReporter(new SilentSuccessFilter(new ConsoleOutput()));
+            .useStoryReporterBuilder(new StoryReporterBuilder().withDefaultFormats().withFormats(CONSOLE, TXT, HTML, XML))
+//            .useDefaultStoryReporter(new SilentSuccessFilter(new ConsoleOutput()))
+            ;
 
         return configuration;
     }
