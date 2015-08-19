@@ -22,6 +22,7 @@ Topology:
 
 # Questions
 
+- Can the story file be renamed?  Why does renaming cause the storyDurations.props file to go missing?
 - Will a failed JBehave cause the build to fail?  If not, look at the failsafe plugin.
 - What extra files are needed for 2+ story files?
 - Can it co-exist with JUnit tests with separate `test` and `integration-test` phases?
