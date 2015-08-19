@@ -1,4 +1,4 @@
-package net.masterthought.example;
+package com.github.kkrull.jbehave.atm;
 
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;

@@ -1,4 +1,4 @@
-package net.masterthought.example;
+package com.github.kkrull.jbehave.atm;
 
 public class CreditCard {
 
