@@ -16,18 +16,23 @@ public class ATMScenario extends JUnitStory {
     @Override
     public Configuration configuration() {
         return new MostUsefulConfiguration()
-                // where to find the stories
-                .useStoryLoader(new LoadFromClasspath(this.getClass()))
-                        // CONSOLE and TXT reporting
-                .useStoryReporterBuilder(new StoryReporterBuilder().withDefaultFormats().withFormats(StoryReporterBuilder.Format.CONSOLE, StoryReporterBuilder.Format.TXT, StoryReporterBuilder.Format.HTML, StoryReporterBuilder.Format.XML));
+            // where to find the stories
+            .useStoryLoader(new LoadFromClasspath(this.getClass()))
+                // CONSOLE and TXT reporting
+            .useStoryReporterBuilder(new StoryReporterBuilder()
+                .withDefaultFormats()
+                .withFormats(
+                    StoryReporterBuilder.Format.CONSOLE,
+                    StoryReporterBuilder.Format.TXT,
+                    StoryReporterBuilder.Format.HTML,
+                    StoryReporterBuilder.Format.XML));
     }
 
     // Here we specify the steps classes
     @Override
     public List<CandidateSteps> candidateSteps() {
         // varargs, can have more that one steps classes
-        return new InstanceStepsFactory(configuration(), new ATMScenarioSteps()).createCandidateSteps();
+        return new InstanceStepsFactory(configuration(), new ATMScenarioSteps())
+            .createCandidateSteps();
     }
-
-//
 }

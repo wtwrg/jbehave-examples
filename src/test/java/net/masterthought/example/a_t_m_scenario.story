@@ -16,12 +16,3 @@ Examples:
 |account_balance|atm_available|request|result|newBalance|
 |100            |100          |20     |20    |80        |
 |100            |100          |10     |10    |90        |
-
-
-
-
-
-
-
-
-

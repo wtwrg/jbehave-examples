@@ -1,8 +1,5 @@
 package net.masterthought.example;
 
-import net.masterthought.example.ATM;
-import net.masterthought.example.Account;
-import net.masterthought.example.CreditCard;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -14,8 +11,8 @@ import static org.junit.Assert.assertThat;
 
 public class ATMScenarioSteps {
 
-    private ATM atm;
-    private Account account;
+    private ATM        atm;
+    private Account    account;
     private CreditCard creditCard;
 
     private int money;
@@ -54,6 +51,4 @@ public class ATMScenarioSteps {
     public void cardShouldBeReturned() {
         assertFalse(creditCard.isInUse());
     }
-
-
 }
