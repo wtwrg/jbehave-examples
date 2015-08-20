@@ -18,7 +18,6 @@ import java.util.List;
 import static org.jbehave.core.reporters.Format.*;
 
 public class ATMScenario extends JUnitStory {
-
     @Test //Make this recognizable to IDEs so you can run the scenario directly without making an extra Runner class.
     public void run() throws Throwable { super.run(); }
 
