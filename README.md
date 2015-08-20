@@ -3,8 +3,26 @@
 
 ## Running
 
-Run with `mvn integration-test`.  Actually, it runs in whatever lifecycle phase you bind it to in
-`executions/execution/phase` in `jbehave-maven-plugin`'s `build` section.
+Run JBehave tests with `mvn integration-test`.  Actually, it runs in whatever lifecycle phase you bind it to in
+`executions/execution/phase` in `jbehave-maven-plugin`'s `build` section.  As long as you pick a phase after `test`,
+running that will run *both* JUnit and JBehave tests.
+
+Run JUnit tests like usual with `mvn test`.
+
+What if you just want to run JBehave tests, or a specific JBehave test?  Add the following to the `Scenario` class
+(the one that extends `JUnitStory`):
+
+```
+public class ATMScenario extends JUnitStory {
+    @Test //Make this recognizable to IDEs so you can run the scenario directly without making an extra Runner class.
+    public void run() throws Throwable { super.run(); }
+
+    @Override
+    public Configuration configuration() { ... }
+
+    ...
+}
+```
 
 
 ## Files
@@ -33,5 +51,3 @@ clutters the output.  Nice going, JBehave.
 
 - Will a failed JBehave cause the build to fail?  If not, look at the failsafe plugin.
 - What extra files are needed for 2+ story files?
-- Can it co-exist with JUnit tests with separate `test` and `integration-test` phases? Looks like it, as long as it's
-  bound to the `integration-test` phase in `build/.../execution/phase`
