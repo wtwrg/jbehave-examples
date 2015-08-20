@@ -1,4 +1,5 @@
 # An Example  [JBehave](http://jbehave.org/) Project using Maven
+
 This is an example maven JBehave project that uses maven to build and run some simple scenarios based around withdrawing cash from an ATM.
 
 ## Background
@@ -19,6 +20,12 @@ Topology:
 - `src/test/<package>/.story`: The Gherkin-ish syntax
 - `src/test/<package>/_Scenario`: Identifies story files and associates them with step definition classes
 - `src/test/<package>/_Steps`: The step definitions that match the Given/When/Then in the .story file
+
+Output:
+
+- `StoryReporterBuilder.withFormats(CONSOLE)`: '(BeforeStories)', story filenames, contents of story files.
+- `StoryReporterBuilder.withFormats(ANSI_CONSOLE)`: The same as `CONSOLE`, but with color output.
+
 
 # Questions
 
