@@ -24,6 +24,9 @@ public class ATMScenario extends JUnitStory {
 }
 ```
 
+With the way JBehave is currently configured (i.e. nobody is telling it to ignore failures in tests), a failed story
+will fail the overall result of `mvn integration-test`.  Good.
+
 
 ## Files
 
@@ -49,5 +52,4 @@ clutters the output.  Nice going, JBehave.
 
 ## Questions
 
-- Will a failed JBehave cause the build to fail?  If not, look at the failsafe plugin.
 - What extra files are needed for 2+ story files?

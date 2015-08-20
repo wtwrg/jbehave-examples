@@ -18,7 +18,7 @@
                         <phase>integration-test</phase>
                         <configuration>
                             <includes>
-                                <include>**/*ATMScenario.java</include>
+                                <include>**/*Scenario.java</include>
                             </includes>
                             <scope>test</scope>
                         </configuration>
