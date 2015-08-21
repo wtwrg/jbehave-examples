@@ -1,6 +1,5 @@
 package com.github.kkrull.jbehave.oracle;
 
-import com.github.kkrull.jbehave.Oracle;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
