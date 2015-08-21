@@ -9,7 +9,7 @@
     <build>
         <plugins>
             <!-- Use failsafe to run JBehave scenarios during `mvn clean verify` -->
-            <!-- verify: integration-test just runs the tests, but it doesn't do post-integration-test cleanup or fail the build on test failure -->
+            <!-- verify: integration-test just runs the tests, but it doesn't do post-integration-test cleanup or fail the build on test failure. -->
             <!-- clean: Prevent stale test results from prior JBehave runs from creeping into build results / JBehave views -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -20,14 +20,14 @@ import static org.jbehave.core.reporters.Format.ANSI_CONSOLE;
 import static org.jbehave.core.reporters.Format.HTML;
 
 public class JBehaveStories extends JUnitStories {
-    @Test //Make it easier to run all scenarios in IDEs that don't recognize this as a test
+    @Test //Make it easier for IDEs to recognize this as a test
     @Override
     public void run() throws Throwable { super.run(); }
 
     @Override
     protected List<String> storyPaths() {
         StoryFinder finder = new StoryFinder();
-        List<String> paths = finder.findPaths(CodeLocations.codeLocationFromPath("src/test/resources"), "**/*.story", "");
+        List<String> paths = finder.findPaths(CodeLocations.codeLocationFromClass(getClass()), "**/*.story", "");
         System.out.println("paths = " + paths);
         return paths;
     }
