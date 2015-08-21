@@ -27,6 +27,34 @@ public class ATMScenario extends JUnitStory {
 With the way JBehave is currently configured (i.e. nobody is telling it to ignore failures in tests), a failed story
 will fail the overall result of `mvn integration-test`.  Good.
 
+Running with `jbehave-maven-plugin` works fine when there's 1 scenario.  When adding a second scenario, it runs the
+first scenario and then fails with the following:
+
+
+```
+[INFO] Generating reports view to '/home/kkrull/Workspace/sandbox/jbehave-example/target/jbehave' using formats '[stats, ansi_console, html]' and view properties '{navigator=ftl/jbehave-navigator.ftl, views=ftl/jbehave-views.ftl, reports=ftl/jbehave-reports.ftl, nonDecorated=ftl/jbehave-report-non-decorated.ftl, decorated=ftl/jbehave-report-decorated.ftl, maps=ftl/jbehave-maps.ftl}'
+[INFO] Reports view generated with 2 stories (of which 0 pending) containing 1 scenarios (of which 0 pending)
+[INFO] Running embeddable com.github.kkrull.jbehave.atm.ATMScenario
+[INFO] Processing system properties {}
+[INFO] Using controls UnmodifiableEmbedderControls[EmbedderControls[batch=false,skip=false,generateViewAfterStories=true,ignoreFailureInStories=false,ignoreFailureInView=false,verboseFailures=false,verboseFiltering=false,storyTimeouts=300,threads=1,failOnStoryTimeout=false]]
+
+(BeforeStories)
+
+[INFO] Generating reports view to '/home/kkrull/Workspace/sandbox/jbehave-example/target/jbehave' using formats '[stats, ansi_console, html]' and view properties '{navigator=ftl/jbehave-navigator.ftl, views=ftl/jbehave-views.ftl, reports=ftl/jbehave-reports.ftl, nonDecorated=ftl/jbehave-report-non-decorated.ftl, decorated=ftl/jbehave-report-decorated.ftl, maps=ftl/jbehave-maps.ftl}'
+[INFO] Reports view generated with 2 stories (of which 0 pending) containing 1 scenarios (of which 0 pending)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.317 s
+[INFO] Finished at: 2015-08-21T13:57:38-05:00
+[INFO] Final Memory: 21M/209M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.jbehave:jbehave-maven-plugin:4.0.3:run-stories-as-embeddables (run-stories) on project jbehave-example: Failed to run stories as embeddables: Failure in running embeddable: com.github.kkrull.jbehave.atm.ATMScenario: Task java.util.concurrent.FutureTask@7da31a40 rejected from java.util.concurrent.ThreadPoolExecutor@28ee7bee[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1] -> [Help 1]
+```
+
+This happens whether there are two `execution/configuration/includes/include` with wildcards, or one with a
+sufficiently-relaxed wildcard to match both.  So we need another plugin, because `jbehave-maven-plugin` is jacked up.
+
 
 ## Files
 
