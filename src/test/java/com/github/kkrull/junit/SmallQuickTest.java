@@ -8,6 +8,6 @@ import static org.hamcrest.Matchers.equalTo;
 public class SmallQuickTest {
     @Test
     public void runsJUnitTests() throws Exception {
-        assertThat(42, equalTo(42));
+        assertThat(42, equalTo(2));
     }
 }
