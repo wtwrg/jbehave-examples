@@ -9,10 +9,14 @@ Thanks, other guy.
 
 Run JUnit tests like always: `mvn test`, or the convenience script `bin/junit`.
 
-Run JBehave tests with `mvn verify`, or the convenience script `bin/jbehave`.  
+Run JBehave tests with `mvn verify`, or the convenience script `bin/jbehave`.   
 
 Note that this will also run JUnit tests.  If you want to run JBehaves and only JBehaves, you'd have to do something
 more compilcated like set up a profile that excludes `**/Test.java` from Surefire's configuration when running JBehaves.  
+
+See the documentation for the failsafe plugin if you're curious about why it's best to say `mvn verify` instead of `mvn
+integration-test` (the former ensures proper setup and teardown of any test fixtures needed for running integration
+tests).
 
 
 ## Rant on `jbehave-maven-plugin`
