@@ -27,9 +27,7 @@ public class JBehaveStories extends JUnitStories {
     @Override
     protected List<String> storyPaths() {
         StoryFinder finder = new StoryFinder();
-        List<String> paths = finder.findPaths(CodeLocations.codeLocationFromClass(getClass()), "**/*.story", "");
-        System.out.println("paths = " + paths);
-        return paths;
+        return finder.findPaths(CodeLocations.codeLocationFromClass(getClass()), "**/*.story", "");
     }
 
     @Override
@@ -43,7 +41,7 @@ public class JBehaveStories extends JUnitStories {
     public Configuration configuration() {
         StoryReporterBuilder storyReporter = new StoryReporterBuilder().withFormats(ANSI_CONSOLE, HTML);
         return new MostUsefulConfiguration()
-            .useStoryLoader(new LoadFromClasspath(this.getClass()))
+            .useStoryLoader(new LoadFromClasspath(getClass()))
             .useStoryReporterBuilder(storyReporter)
             .useStepMonitor(new SilentStepMonitor());
     }
