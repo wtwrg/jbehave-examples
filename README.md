@@ -55,6 +55,14 @@ first scenario and then fails with the following:
 This happens whether there are two `execution/configuration/includes/include` with wildcards, or one with a
 sufficiently-relaxed wildcard to match both.  So we need another plugin, because `jbehave-maven-plugin` is jacked up.
 
+So here comes `surefire` to the rescue.  It works like a champ, but it has to be configured to run integration tests.
+So there's a profile `jbehave` for it and a corresponding script `bin/jbehave-run.sh` to run it with the right profile.
+Using the profile has the advantage of only adding JBehave's runtime / view-generation-time dependencies when that
+profile is active.
+
+Don't believe me?  Compare the output of `mvn dependency:tree -Dscope=test` and
+`mvn -Pjbehave dependency:tree -Dscope=test`.
+
 
 ## Files
 
