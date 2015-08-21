@@ -1,91 +1,79 @@
 # An Example  [JBehave](http://jbehave.org/) Project using Maven
 
+Forked from some other guy.  Or gal.  I don't really know.
 
-## Running
-
-Run JBehave tests with `mvn integration-test`.  Actually, it runs in whatever lifecycle phase you bind it to in
-`executions/execution/phase` in `jbehave-maven-plugin`'s `build` section.  As long as you pick a phase after `test`,
-running that will run *both* JUnit and JBehave tests.
-
-Run JUnit tests like usual with `mvn test`.
-
-What if you just want to run JBehave tests, or a specific JBehave test?  Add the following to the `Scenario` class
-(the one that extends `JUnitStory`):
-
-```
-public class ATMScenario extends JUnitStory {
-    @Test //Make this recognizable to IDEs so you can run the scenario directly without making an extra Runner class.
-    public void run() throws Throwable { super.run(); }
-
-    @Override
-    public Configuration configuration() { ... }
-
-    ...
-}
-```
-
-With the way JBehave is currently configured (i.e. nobody is telling it to ignore failures in tests), a failed story
-will fail the overall result of `mvn integration-test`.  Good.
-
-Running with `jbehave-maven-plugin` works fine when there's 1 scenario.  When adding a second scenario, it runs the
-first scenario and then fails with the following:
+Thanks, other guy.  
 
 
-```
-[INFO] Generating reports view to '/home/kkrull/Workspace/sandbox/jbehave-example/target/jbehave' using formats '[stats, ansi_console, html]' and view properties '{navigator=ftl/jbehave-navigator.ftl, views=ftl/jbehave-views.ftl, reports=ftl/jbehave-reports.ftl, nonDecorated=ftl/jbehave-report-non-decorated.ftl, decorated=ftl/jbehave-report-decorated.ftl, maps=ftl/jbehave-maps.ftl}'
-[INFO] Reports view generated with 2 stories (of which 0 pending) containing 1 scenarios (of which 0 pending)
-[INFO] Running embeddable com.github.kkrull.jbehave.atm.ATMScenario
-[INFO] Processing system properties {}
-[INFO] Using controls UnmodifiableEmbedderControls[EmbedderControls[batch=false,skip=false,generateViewAfterStories=true,ignoreFailureInStories=false,ignoreFailureInView=false,verboseFailures=false,verboseFiltering=false,storyTimeouts=300,threads=1,failOnStoryTimeout=false]]
+## Running Tests
 
-(BeforeStories)
+Run JUnit tests like always: `mvn test`, or the convenience script `bin/junit`.
 
-[INFO] Generating reports view to '/home/kkrull/Workspace/sandbox/jbehave-example/target/jbehave' using formats '[stats, ansi_console, html]' and view properties '{navigator=ftl/jbehave-navigator.ftl, views=ftl/jbehave-views.ftl, reports=ftl/jbehave-reports.ftl, nonDecorated=ftl/jbehave-report-non-decorated.ftl, decorated=ftl/jbehave-report-decorated.ftl, maps=ftl/jbehave-maps.ftl}'
-[INFO] Reports view generated with 2 stories (of which 0 pending) containing 1 scenarios (of which 0 pending)
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 2.317 s
-[INFO] Finished at: 2015-08-21T13:57:38-05:00
-[INFO] Final Memory: 21M/209M
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.jbehave:jbehave-maven-plugin:4.0.3:run-stories-as-embeddables (run-stories) on project jbehave-example: Failed to run stories as embeddables: Failure in running embeddable: com.github.kkrull.jbehave.atm.ATMScenario: Task java.util.concurrent.FutureTask@7da31a40 rejected from java.util.concurrent.ThreadPoolExecutor@28ee7bee[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1] -> [Help 1]
-```
+Run JBehave tests with `mvn verify`, or the convenience script `bin/jbehave`.  
 
-This happens whether there are two `execution/configuration/includes/include` with wildcards, or one with a
-sufficiently-relaxed wildcard to match both.  So we need another plugin, because `jbehave-maven-plugin` is jacked up.
-
-So here comes `surefire` to the rescue.  It works like a champ, but it has to be configured to run integration tests.
-So there's a profile `jbehave` for it and a corresponding script `bin/jbehave-run.sh` to run it with the right profile.
-Using the profile has the advantage of only adding JBehave's runtime / view-generation-time dependencies when that
-profile is active.
-
-Don't believe me?  Compare the output of `mvn dependency:tree -Dscope=test` and
-`mvn -Pjbehave dependency:tree -Dscope=test`.
+Note that this will also run JUnit tests.  If you want to run JBehaves and only JBehaves, you'd have to do something
+more compilcated like set up a profile that excludes `**/Test.java` from Surefire's configuration when running JBehaves.  
 
 
-## Files
+## Rant on `jbehave-maven-plugin`
 
-- `src/test/<package>/.story`: The Gherkin-ish syntax
-- `src/test/<package>/_Scenario`: Identifies story files and associates them with step definition classes
-- `src/test/<package>/_Steps`: The step definitions that match the Given/When/Then in the .story file
+In a cruel and ironic twist of fate, getting `jbehave-maven-plugin` to actually run 2 or more JBehave scenarios
+successfully is exceedingly difficult.  Yes that's right: the plugin written for the express purpose of running JBehave
+scenarios is hard to use for that, very purpose.
 
-Can the story file be renamed?  Why does renaming cause the storyDurations.props file to go missing?  Oh, that's
-because there is a poorly-documented convention that is described in [Putting the pieces
-together](https://blog.codecentric.de/en/2011/03/automated-acceptance-testing-using-jbehave/).  Not getting the
-`.story` and `Scenario` filenames (and paths) synchronized can lead to not finding any stories, which in turn can lead
-to not copying `storyDurations.props`, which in turn leads to a meaningless exception for each story that really
-clutters the output.  Nice going, JBehave.
+Its list of transgressions is a long one:
+
+- It forces the use of opaque, poorly-documented naming conventions that relate Java Scenario (glue code) classes to
+  `.story` files
+- It violates the Maven standard directory layout (`src/main` instead of `src/test` by default), and we all know what
+  happens in Maven when you try to use a non-standard directory layout.
+- It uses flaky path name glob patterns to glue code *source* instead of compiled code.  This seems like it's asking for
+  a brittle project that runs tests in a development environment, but nowhere else (i.e. from a jar file).
+- Last - but not least - **it doesn't run the tests!!** (if you have two or more `Scenario` files).  **!!**
+
+I was really hoping to avoid this, but I've had to follow the oft-recommended approach of using the
+`maven-failsafe-plugin` to run JBehave scenarios.  Although it seems to be working, I don't like how indirect it is:
+
+- the failsafe plugin calls the surefire plugin, which...
+- (presumably) invokes some sort of JUnit runner, which...
+- (presumably) scans the classpath for `@Test` methods, which...
+- finds classes descending from `JUnitStory` and `JUnitStories`, which...
+- instantiate step definition classes and associate them with related `.story` files.
+
+In short, there are many layers at which things can get mis-configured and go horribly, horribly wrong.
+
+*It's a miracle it works at all.*
+
+Your reward - by the way - for all this hard work is **incredibly noisy test output** that looks impressive as hell when
+things go right, but God help you if you have to sort through all that cruft to find what happened during a failing
+test.  Arg!!
+
+
+## Maven Configuration and Test Discovery
+
+So as I mentioned it's the `maven-failsafe-plugin` that needs to be configured to look for tests (JUnit tests, in this
+case).  This is done by a 1-time configuration in `build/../plugin/configuration/includes` in `pom.xml`.  It looks for
+the 1 glue-code class that:
+
+- Discovers all JBehave `.story` files
+- Discovers and instantiates all Step Definition classes annotated with the included `@Steps`.
+  **Note that the package name will need to be changed to suit your needs.**
+- Instantiates the Step Definition classes using a public, no-arg constructor.
+
+The bright side after this one-time configuration is that you don't have to mess with it afterwards.  Add new `.story` files
+to `src/test/resources/<your base package>` and new `@Steps`-annotated classes to `src/test/java/<your base package>`
+for your Step Definitions.  Also on the bright side - discovering `.story` files and having a single glue code class
+seems to avoid the dreaded `FileNotFoundException: Missing file storyDurations.props` error that is so difficult to
+debug.
+
+There is, by the way, a bit of extra weirdness required for JBehave to not barf when generating reports.  That's the bit
+about the `unpack-view-resources` execution and corresponding `zip`-type dependencies because...SOMEBODY...does not
+declare those files needed for the view as runtime dependencies or include them in the other JBehave libraries you
+already have to download.
 
 
 ## Console Output
 
 - `StoryReporterBuilder.withFormats(CONSOLE)`: '(BeforeStories)', story filenames, contents of story files.
 - `StoryReporterBuilder.withFormats(ANSI_CONSOLE)`: The same as `CONSOLE`, but with color output.
-- Can output be limited to only show status and errors?  There's a [FAQ](http://jbehave.org/reference/stable/faq.html)
-  on that.
 
-
-## Questions
-
-- What extra files are needed for 2+ story files?
