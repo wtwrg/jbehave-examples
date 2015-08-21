@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mvn -Pjbehave test
+mvn clean verify
