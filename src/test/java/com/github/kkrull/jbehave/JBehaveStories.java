@@ -21,7 +21,7 @@ import java.util.List;
 import static org.jbehave.core.reporters.Format.ANSI_CONSOLE;
 import static org.jbehave.core.reporters.Format.HTML;
 
-public class AllScenario extends JUnitStories {
+public class JBehaveStories extends JUnitStories {
     @Test //Make it easier to run all scenarios in IDEs that don't recognize this as a test
     @Override
     public void run() throws Throwable { super.run(); }
