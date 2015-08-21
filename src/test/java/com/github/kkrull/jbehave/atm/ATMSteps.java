@@ -9,7 +9,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
-public class ATMScenarioSteps {
+public class ATMSteps {
 
     private ATM        atm;
     private Account    account;

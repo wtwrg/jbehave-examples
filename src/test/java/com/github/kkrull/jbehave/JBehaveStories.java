@@ -1,21 +1,19 @@
 package com.github.kkrull.jbehave;
 
-import com.github.kkrull.jbehave.atm.ATMScenarioSteps;
+import com.github.kkrull.jbehave.atm.ATMSteps;
+import com.github.kkrull.jbehave.oracle.OracleSteps;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.io.CodeLocations;
 import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
-import org.jbehave.core.junit.JUnitStory;
 import org.jbehave.core.reporters.StoryReporterBuilder;
-import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.SilentStepMonitor;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.jbehave.core.reporters.Format.ANSI_CONSOLE;
@@ -37,7 +35,7 @@ public class JBehaveStories extends JUnitStories {
     @Override
     public InjectableStepsFactory stepsFactory() {
         return new InstanceStepsFactory(configuration(),
-            new ATMScenarioSteps(),
+            new ATMSteps(),
             new OracleSteps());
     }
 
