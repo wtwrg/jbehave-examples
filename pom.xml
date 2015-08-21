@@ -8,6 +8,15 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
             <!-- Use failsafe to run JBehave scenarios during `mvn clean verify` -->
             <!-- verify: integration-test just runs the tests, but it doesn't do post-integration-test cleanup or fail the build on test failure. -->
             <!-- clean: Prevent stale test results from prior JBehave runs from creeping into build results / JBehave views -->
@@ -65,6 +74,11 @@
             <artifactId>jbehave-core</artifactId>
             <version>${jbehave.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.10</version>
         </dependency>
 
         <!-- JBehave view generation dependencies -->

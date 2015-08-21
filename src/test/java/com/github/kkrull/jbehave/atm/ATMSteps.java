@@ -1,5 +1,6 @@
 package com.github.kkrull.jbehave.atm;
 
+import com.github.kkrull.jbehave.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -9,6 +10,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
+@Steps
 public class ATMSteps {
 
     private ATM        atm;

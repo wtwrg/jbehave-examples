@@ -1,5 +1,6 @@
 package com.github.kkrull.jbehave.oracle;
 
+import com.github.kkrull.jbehave.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -7,6 +8,7 @@ import org.jbehave.core.annotations.When;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+@Steps
 public class OracleSteps {
 
     private Oracle subject;
