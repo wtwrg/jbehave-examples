@@ -1,6 +1,6 @@
 # An Example  [JBehave](http://jbehave.org/) Project using Maven
 
-Forked from some other guy.  Or gal.  I don't really know.
+Forked from [some other guy](https://github.com/masterthought/jbehave-example).  Or gal.  I don't really know.
 
 Thanks, other guy.  
 
