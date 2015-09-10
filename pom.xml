@@ -37,7 +37,7 @@
                 <executions>
                     <execution>
                         <id>unpack-view-resources</id>
-                        <phase>generate-resources</phase>
+                        <phase>pre-integration-test</phase>
                         <goals>
                             <goal>unpack-view-resources</goal>
                         </goals>
