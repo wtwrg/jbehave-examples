@@ -1,7 +1,7 @@
 Narrative: Account Holder withdraws cash
-    As a Account Holder
-    I want to withdraw cash from an ATM
-    In order to get money when the bank is closed
+As a Account Holder
+I want to withdraw cash from an ATM
+In order to get money when the bank is closed
 
 Scenario: Account has sufficient funds
 Given the Account balance is <account_balance>

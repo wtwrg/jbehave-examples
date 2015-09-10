@@ -2,6 +2,7 @@ package com.github.kkrull.jbehave.fixture;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 final class TestFixture {
     private static int _numTimesSetup = 0;
@@ -12,5 +13,9 @@ final class TestFixture {
 
     public static void shouldHaveBeenSetUpOnce() {
         assertThat(_numTimesSetup, equalTo(1));
+    }
+
+    public static void shouldNotHaveBeenSetUpAgain() {
+        assertThat(_numTimesSetup, lessThanOrEqualTo(1));
     }
 }
