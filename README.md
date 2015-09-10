@@ -82,3 +82,27 @@ already have to download.
 - `StoryReporterBuilder.withFormats(CONSOLE)`: `(BeforeStories)`, story filenames, contents of story files.
 - `StoryReporterBuilder.withFormats(ANSI_CONSOLE)`: The same as `CONSOLE`, but with color output.
 
+
+## Test fixture
+
+JBehave has a feature called [Meta Filtering](http://jbehave.org/reference/stable/meta-filtering.html), which at first
+looks similar to cucumber-jvm tags.  If they were so similar, you could use a method like this to run any fixture
+setup:
+
+```java
+@BeforeStory
+public void setup(@Named("storyFixture") String noValueNecessary) {
+    new Fixture().setup();
+}
+
+```
+
+Alas, it does not work as I expected:
+
+- This method gets called whether or not you have the named meta tag.
+- This method gets called if you have the named meta tag, and comment it out.  It still gets called with whatever
+  value is associated with the tag (i.e. commenting it out has absolutely no effect).
+
+As such, any fixture method has to check to see if there's a value.  So the notion of doing meta filtering based upon
+the mere existence of a tag is a myth.  `Meta: @RunWithMyCoolFixture` is a construct that invokes dismay and rage the
+instant you add a second scenario or story.
