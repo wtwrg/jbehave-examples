@@ -19,7 +19,7 @@ import static java.util.stream.Collectors.toList;
 import static org.jbehave.core.reporters.Format.ANSI_CONSOLE;
 import static org.jbehave.core.reporters.Format.HTML;
 
-public class JBehaveStories extends JUnitStories {
+public class JBehaveIT extends JUnitStories {
     @Test //Make it easier for IDEs to recognize this as a test
     @Override
     public void run() throws Throwable { super.run(); }
