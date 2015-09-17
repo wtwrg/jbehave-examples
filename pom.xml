@@ -96,9 +96,6 @@
     <profiles>
         <profile>
             <id>global-runner</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
 
             <build>
                 <plugins>
@@ -118,6 +115,9 @@
 
         <profile>
             <id>isolated-runners</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
 
             <build>
                 <plugins>
