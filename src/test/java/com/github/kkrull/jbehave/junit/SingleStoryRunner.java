@@ -15,7 +15,7 @@ import org.jbehave.core.steps.InstanceStepsFactory;
 import java.util.List;
 
 import static org.jbehave.core.reporters.Format.ANSI_CONSOLE;
-import static org.jbehave.core.reporters.Format.HTML;
+import static org.jbehave.core.reporters.Format.STATS;
 
 public abstract class SingleStoryRunner extends JUnitStory {
     @Override
@@ -45,7 +45,7 @@ public abstract class SingleStoryRunner extends JUnitStory {
     }
 
     private StoryReporterBuilder storyReporter() {
-        return new StoryReporterBuilder().withFormats(ANSI_CONSOLE, HTML);
+        return new StoryReporterBuilder().withFormats(ANSI_CONSOLE, STATS);
     }
 
     protected abstract String storyFilename();
