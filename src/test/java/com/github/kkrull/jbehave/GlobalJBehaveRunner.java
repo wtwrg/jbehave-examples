@@ -19,7 +19,7 @@ import static java.util.stream.Collectors.toList;
 import static org.jbehave.core.reporters.Format.ANSI_CONSOLE;
 import static org.jbehave.core.reporters.Format.HTML;
 
-public class JBehaveIT extends JUnitStories {
+public class GlobalJBehaveRunner extends JUnitStories {
     @Override
     protected List<String> storyPaths() {
         StoryFinder finder = new StoryFinder();
