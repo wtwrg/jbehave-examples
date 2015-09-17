@@ -20,10 +20,6 @@ import static org.jbehave.core.reporters.Format.ANSI_CONSOLE;
 import static org.jbehave.core.reporters.Format.HTML;
 
 public class JBehaveIT extends JUnitStories {
-    @Test //Make it easier for IDEs to recognize this as a test
-    @Override
-    public void run() throws Throwable { super.run(); }
-
     @Override
     protected List<String> storyPaths() {
         StoryFinder finder = new StoryFinder();
