@@ -1,6 +1,6 @@
-package com.github.kkrull.jbehave.fixture;
+package com.github.kkrull.fixture;
 
-import com.github.kkrull.jbehave.Steps;
+import com.github.kkrull.jbehave.steps.Steps;
 import org.jbehave.core.annotations.*;
 
 @Steps

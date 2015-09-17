@@ -1,4 +1,4 @@
-package com.github.kkrull.jbehave.junit;
+package com.github.kkrull.jbehave;
 
 public class StoryNotFound extends RuntimeException {
     public static StoryNotFound forGlobPattern(String glob) {

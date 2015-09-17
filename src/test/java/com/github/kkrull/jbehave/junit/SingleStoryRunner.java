@@ -1,5 +1,7 @@
 package com.github.kkrull.jbehave.junit;
 
+import com.github.kkrull.jbehave.MultipleStoriesFound;
+import com.github.kkrull.jbehave.StoryNotFound;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.io.CodeLocations;

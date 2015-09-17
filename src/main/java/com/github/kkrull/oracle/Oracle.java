@@ -1,4 +1,4 @@
-package com.github.kkrull.jbehave.oracle;
+package com.github.kkrull.oracle;
 
 public class Oracle {
     public String getAnswerToTheUniverse() {

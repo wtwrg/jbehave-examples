@@ -1,4 +1,4 @@
-package com.github.kkrull.jbehave.fixture;
+package com.github.kkrull.fixture;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

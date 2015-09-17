@@ -1,6 +1,6 @@
-package com.github.kkrull.jbehave.atm;
+package com.github.kkrull.atm;
 
-import com.github.kkrull.jbehave.Steps;
+import com.github.kkrull.jbehave.steps.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;

@@ -1,4 +1,4 @@
-package com.github.kkrull.jbehave.junit;
+package com.github.kkrull.jbehave;
 
 import java.util.List;
 

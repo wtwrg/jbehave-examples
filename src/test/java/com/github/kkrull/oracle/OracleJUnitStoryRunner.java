@@ -1,4 +1,4 @@
-package com.github.kkrull.jbehave.oracle;
+package com.github.kkrull.oracle;
 
 import com.github.kkrull.jbehave.junit.SingleStoryRunner;
 

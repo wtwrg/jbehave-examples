@@ -1,6 +1,6 @@
-package com.github.kkrull.jbehave.oracle;
+package com.github.kkrull.oracle;
 
-import com.github.kkrull.jbehave.Steps;
+import com.github.kkrull.jbehave.steps.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;

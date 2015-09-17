@@ -1,4 +1,4 @@
-package com.github.kkrull.jbehave.atm;
+package com.github.kkrull.atm;
 
 public class Account {
 

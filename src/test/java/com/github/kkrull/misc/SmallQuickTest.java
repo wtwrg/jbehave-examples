@@ -1,4 +1,4 @@
-package com.github.kkrull.junit;
+package com.github.kkrull.misc;
 
 import org.junit.Test;
 

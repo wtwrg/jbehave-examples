@@ -1,5 +1,6 @@
 package com.github.kkrull.jbehave;
 
+import com.github.kkrull.jbehave.steps.StepDefinitionScanner;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.io.CodeLocations;
@@ -10,7 +11,6 @@ import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.SilentStepMonitor;
-import org.junit.Test;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -28,7 +28,7 @@ public class JBehaveIT extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        Stream<?> stepDefinitionInstances = new StepDefinitionScanner().newInstances("com.github.kkrull.jbehave");
+        Stream<?> stepDefinitionInstances = new StepDefinitionScanner().newInstances("com.github.kkrull");
         return new InstanceStepsFactory(configuration(), stepDefinitionInstances.collect(toList()));
     }
 
