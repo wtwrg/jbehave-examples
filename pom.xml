@@ -9,6 +9,7 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
@@ -19,15 +20,14 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
             </plugin>
 
             <plugin>
@@ -40,6 +40,30 @@
                         <phase>pre-integration-test</phase>
                         <goals>
                             <goal>unpack-view-resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.18.1</version>
+
+                <configuration>
+                    <includes>
+                        <include>**/*Runner.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/GlobalJBehaveRunner.java</exclude>
+                    </excludes>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -95,43 +119,22 @@
 
     <profiles>
         <profile>
-            <id>global-runner</id>
-
+            <id>no-jars</id>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-
+                        <artifactId>maven-install-plugin</artifactId>
+                        <version>2.5.2</version>
                         <configuration>
-                            <includes>
-                                <include>**/GlobalJBehaveRunner.java</include>
-                            </includes>
+                            <skip>true</skip>
                         </configuration>
                     </plugin>
-                </plugins>
-            </build>
-        </profile>
 
-        <profile>
-            <id>isolated-runners</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-
-            <build>
-                <plugins>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>2.6</version>
                         <configuration>
-                            <includes>
-                                <include>**/*Runner.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/GlobalJBehaveRunner.java</exclude>
-                            </excludes>
+                            <skipIfEmpty>true</skipIfEmpty>
                         </configuration>
                     </plugin>
                 </plugins>
