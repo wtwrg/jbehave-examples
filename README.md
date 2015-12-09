@@ -1,4 +1,4 @@
-# An Example  [JBehave](http://jbehave.org/) Project using Maven
+# An Example [JBehave](http://jbehave.org/) Project using Maven
 
 Forked from [some other guy](https://github.com/masterthought/jbehave-example).  Or gal.  I don't really know.
 
@@ -12,7 +12,7 @@ Run JUnit tests like always: `mvn test`, or the convenience script `bin/junit`.
 Run JBehave tests with `mvn verify`, or the convenience script `bin/jbehave`.   
 
 Note that this will also run JUnit tests.  If you want to run JBehaves and only JBehaves, you'd have to do something
-more compilcated like set up a profile that excludes `**/Test.java` from Surefire's configuration when running JBehaves.  
+more complicated like set up a profile that excludes `**/Test.java` from Surefire's configuration when running JBehaves.  
 
 See the documentation for the [failsafe plugin](http://maven.apache.org/surefire/maven-failsafe-plugin/index.html) if
 you're curious about why it's best to say `mvn verify` instead of `mvn integration-test` (the former ensures proper

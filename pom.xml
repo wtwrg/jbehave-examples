@@ -94,29 +94,7 @@
     <name>JBehave examples</name>
 
     <profiles>
-        <profile>
-            <id>no-jars</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-install-plugin</artifactId>
-                        <version>2.5.2</version>
-                        <configuration>
-                            <skip>true</skip>
-                        </configuration>
-                    </plugin>
-
-                    <plugin>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>2.6</version>
-                        <configuration>
-                            <skipIfEmpty>true</skipIfEmpty>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
+        <!-- Mutually exclusive profiles -->
         <profile>
             <id>acceptance-tests</id>
             <build>
@@ -129,6 +107,34 @@
                         <configuration>
                             <includes>
                                 <include>**/AcceptanceRunner*.java</include>
+                            </includes>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>system-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.18.1</version>
+
+                        <configuration>
+                            <includes>
+                                <include>**/SystemRunner*.java</include>
                             </includes>
                         </configuration>
 
