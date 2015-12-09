@@ -8,23 +8,23 @@ import org.jbehave.core.annotations.When;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class OracleSteps {
+public class AcceptanceSteps {
 
     private Oracle subject;
     private String answer;
 
-    @Given("an oracle")
-    public void givenAnOracle() {
+    @Given("a working feature")
+    public void givenAWorkingFeature() {
         this.subject = new Oracle();
     }
 
-    @When("I ask it for the answer")
-    public void whenIAskItForTheAnswer() {
+    @When("I run its acceptance tests")
+    public void whenIRunItsAcceptanceTests() {
         this.answer = subject.getAnswerToTheUniverse();
     }
 
-    @Then("it responds with the universal answer")
-    public void thenItRespondsWithTheUniversalAnswer() {
+    @Then("those tests pass")
+    public void thenThoseTestsPass() {
         assertThat(answer, equalTo("Forty two"));
     }
 }
