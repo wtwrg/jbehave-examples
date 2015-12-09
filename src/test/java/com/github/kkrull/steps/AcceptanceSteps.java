@@ -1,5 +1,7 @@
 package com.github.kkrull.steps;
 
+import com.github.kkrull.oracle.Dunce;
+import com.github.kkrull.oracle.Machine;
 import com.github.kkrull.oracle.Oracle;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -10,8 +12,13 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class AcceptanceSteps {
 
-    private Oracle subject;
+    private Machine subject;
     private String answer;
+
+    @Given("a broken feature")
+    public void givenABrokenFeature() {
+        this.subject = new Dunce();
+    }
 
     @Given("a working feature")
     public void givenAWorkingFeature() {

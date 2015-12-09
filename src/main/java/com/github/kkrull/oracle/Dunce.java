@@ -1,8 +1,8 @@
 package com.github.kkrull.oracle;
 
-public class Oracle implements Machine {
+public class Dunce implements Machine {
     @Override
     public String getAnswerToTheUniverse() {
-        return "Forty two";
+        return "Uhh...";
     }
 }

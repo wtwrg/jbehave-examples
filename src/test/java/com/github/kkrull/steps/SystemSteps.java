@@ -1,5 +1,6 @@
 package com.github.kkrull.steps;
 
+import com.github.kkrull.oracle.Machine;
 import com.github.kkrull.oracle.Oracle;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -10,7 +11,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class SystemSteps {
 
-    private Oracle subject;
+    private Machine subject;
     private String answer;
 
     @Given("a working system")
