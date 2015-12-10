@@ -1,9 +1,9 @@
 package com.github.kkrull.runner;
 
 import com.github.kkrull.jbehave.BaseJBehaveRunner;
-import com.github.kkrull.steps.AcceptanceSteps;
+import com.github.kkrull.steps.AcceptanceFailingSteps;
 
-public class AcceptanceRunnerFailing extends BaseJBehaveRunner<AcceptanceSteps> {
+public class AcceptanceRunnerFailing extends BaseJBehaveRunner<AcceptanceFailingSteps> {
     protected String storyFilenameGlob() { return "acceptance_failing.story"; }
-    protected AcceptanceSteps newStepDefinitions() { return new AcceptanceSteps(); }
+    protected AcceptanceFailingSteps newStepDefinitions() { return new AcceptanceFailingSteps(); }
 }
