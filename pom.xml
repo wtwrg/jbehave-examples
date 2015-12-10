@@ -134,6 +134,39 @@
         </profile>
 
         <profile>
+            <id>acceptance-tests-plugin</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jbehave</groupId>
+                        <artifactId>jbehave-maven-plugin</artifactId>
+                        <version>${jbehave.version}</version>
+                        <executions>
+                            <execution>
+                                <id>run-acceptance-tests-with-plugin</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>run-stories-as-embeddables</goal>
+                                </goals>
+
+                                <configuration>
+                                    <!-- TODO KDK: Why is this not finding the test classes and the production classes? -->
+                                    <testSourceDirectory>src/main/java</testSourceDirectory>
+                                    <testOutputDirectory>target/classes</testOutputDirectory>
+                                    <sourceDirectory>src/test/java</sourceDirectory>
+                                    <outputDirectory>target/test-classes</outputDirectory>
+                                    <includes>
+                                        <include>**/AcceptanceRunner*.java</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
             <id>system-tests</id>
             <build>
                 <plugins>
