@@ -88,7 +88,6 @@ public abstract class BaseJBehaveRunner<S> extends JUnitStory {
         List<String> metaFilters = metaFilters();
         embedder.useMetaFilters(metaFilters);
         storyTimeouts().ifPresent(x -> embedder.embedderControls().useStoryTimeouts(x));
-        embedder.embedderControls().doGenerateViewAfterStories(false);
         return embedder;
     }
 

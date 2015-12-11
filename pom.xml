@@ -44,6 +44,22 @@
                     </execution>
 
                     <execution>
+                        <id>run-system-tests-with-plugin</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>run-stories-as-embeddables</goal>
+                        </goals>
+
+                        <configuration>
+                            <includes>
+                                <include>**/AcceptanceRunner*.java</include>
+                                <include>**/SystemRunner*.java</include>
+                            </includes>
+                            <scope>test</scope>
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>generate-view</id>
                         <phase>post-integration-test</phase>
                         <goals>
@@ -102,98 +118,6 @@
     </dependencies>
 
     <name>JBehave examples</name>
-
-    <profiles>
-        <!-- Mutually exclusive profiles -->
-        <profile>
-            <id>acceptance-tests</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>2.18.1</version>
-
-                        <configuration>
-                            <includes>
-                                <include>**/AcceptanceRunner*.java</include>
-                            </includes>
-                        </configuration>
-
-                        <executions>
-                            <execution>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>acceptance-tests-plugin</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jbehave</groupId>
-                        <artifactId>jbehave-maven-plugin</artifactId>
-                        <version>${jbehave.version}</version>
-                        <executions>
-                            <execution>
-                                <id>run-acceptance-tests-with-plugin</id>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>run-stories-as-embeddables</goal>
-                                </goals>
-
-                                <configuration>
-                                    <!-- TODO KDK: Why is this not finding the test classes and the production classes? -->
-                                    <testSourceDirectory>src/main/java</testSourceDirectory>
-                                    <testOutputDirectory>target/classes</testOutputDirectory>
-                                    <sourceDirectory>src/test/java</sourceDirectory>
-                                    <outputDirectory>target/test-classes</outputDirectory>
-                                    <includes>
-                                        <include>**/AcceptanceRunner*.java</include>
-                                    </includes>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>system-tests</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>2.18.1</version>
-
-                        <configuration>
-                            <includes>
-                                <include>**/SystemRunner*.java</include>
-                            </includes>
-                        </configuration>
-
-                        <executions>
-                            <execution>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
